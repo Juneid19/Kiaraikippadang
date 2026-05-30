@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIARA IKIP PADANG - Radio Streaming</title>
+    <!-- CSS Dependencies -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d47a1; /* Biru khas kampus/pendidikan */
+            --secondary-color: #1565c0;
+            --accent-color: #ffd700;   /* Emas aksen */
+            --light-bg: #f8f9fa;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); color: #333; scroll-behavior: smooth; }
+
+        /* Navbar */
+        .navbar { background-color: var(--primary-color) !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('http://cdn.theradiohub.com/logos/157.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+            object-fit: cover;
+            margin-bottom: 15px;
+            background-color: white;
+        }
+
+        /* ANTI-TERPOTONG FIX: Player Section */
+        .streaming-section {
+            background-color: #e9ecef;
+            padding: 50px 0; 
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+        .player-wrapper {
+            margin: 0 auto;
+            max-width: 650px; 
+            padding: 0 15px;
+        }
+
+        .responsive-player {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            background: #000;
+            border-radius: 20px;
+            border: 8px solid #fff;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+        }
+
+        /* Kunci Tinggi Iframe agar tidak termakan hero saat desktop/landscape */
+        @media (min-width: 769px) {
+            .responsive-player { height: 180px; } /* Disesuaikan dengan tinggi player vircel app */
+        }
+        @media (max-width: 768px) {
+            .responsive-player { height: 180px; } 
+            .hero-img { width: 120px; height: 120px; }
+        }
+
+        .radio-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Titles */
+        .section-title { font-weight: 800; margin-bottom: 40px; text-align: center; color: var(--primary-color); position: relative; }
+        .section-title::after { content: ''; width: 50px; height: 3px; background: var(--accent-color); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        /* Serba Serbi */
+        .serba-box { background: white; padding: 20px; border-radius: 12px; border-top: 4px solid var(--primary-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); height: 100%; }
+
+        /* Map Container */
+        .map-container { width: 100%; height: 400px; line-height: 0; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        #backToTop {
+            position: fixed; bottom: 30px; right: 30px; display: none;
+            z-index: 100; border: none; background: var(--primary-color);
+            color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
+            <img src="http://cdn.theradiohub.com/logos/157.jpg" width="35" class="me-2 rounded-circle bg-white" alt="Logo">
+            KIARA IKIP PADANG
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto small fw-bold">
+                <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="#program">JADWAL</a></li>
+                <li class="nav-item"><a class="nav-link" href="#serba-serbi">SERBA-SERBI</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kontak">KONTAK</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header id="home" class="hero">
+    <div class="container">
+        <img src="http://cdn.theradiohub.com/logos/157.jpg" class="hero-img" alt="Logo Kiara">
+        <h1 class="fw-bold h2">KIARA IKIP PADANG</h1>
+        <p class="text-warning mb-0"><strong>Creative, Educative, and Inspiring Radio</strong></p>
+    </div>
+</header>
+
+<!-- Streaming Section -->
+<section class="streaming-section">
+    <div class="container">
+        <div class="player-wrapper">
+            <div class="responsive-player">
+                <iframe class="radio-iframe" src="https://kiarampc.vercel.app/" allow="autoplay"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Program Guide -->
+<section id="program" class="py-5">
+    <div class="container">
+        <h2 class="section-title">PROGRAM GUIDE</h2>
+        <div class="row g-3">
+            <script>
+                const days = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
+                const prog = [
+                    {n:"Kiara Fresh Morning", t:"06:00 ~ 09:00"}, {n:"Campus Zone", t:"09:00 ~ 12:00"},
+                    {n:"Request Time", t:"12:00 ~ 15:00"}, {n:"Indie Music Station", t:"15:00 ~ 18:00"},
+                    {n:"Night Melodies", t:"18:00 ~ 22:00"}
+                ];
+                days.forEach(d => {
+                    document.write(`<div class="col-lg-3 col-md-6 mb-3"><div class="card shadow-sm border-0 rounded-3 overflow-hidden" style="background:#fff;"><div class="p-2 text-center text-white fw-bold" style="background:var(--primary-color)">${d}</div>`);
+                    prog.forEach(p => {
+                        document.write(`<div class="p-2 border-bottom d-flex justify-content-between small"><span>${p.n}</span><span class="fw-bold" style="color:var(--secondary-color)">${p.t}</span></div>`);
+                    });
+                    document.write(`</div></div>`);
+                });
+            </script>
+        </div>
+    </div>
+</section>
+
+<!-- Serba Serbi -->
+<section id="serba-serbi" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">SERBA-SERBI RADIO KAMPUS</h2>
+        <div class="row g-4">
+            <div class="col-md-6"><div class="serba-box"><h6>1. Kreativitas & Edukasi</h6><p class="small mb-0 text-muted">Radio komunitas mahasiswa sebagai wadah informasi akademik, hiburan sehat, serta pengembangan skill penyiaran dan komunikasi kreatif.</p></div></div>
+            <div class="col-md-6"><div class="serba-box"><h6>2. Karakteristik Siaran</h6><p class="small mb-0 text-muted">Menyuguhkan info seputar aktivitas kampus, lagu-lagu hits pilihan, segmen kirim salam, hingga bincang santai inspiratif bareng mahasiswa/dosen.</p></div></div>
+            <div class="col-md-12"><div class="serba-box"><h6 style="color: var(--primary-color);">3. Siaran Digital (Streaming)</h6><p class="small mb-0 text-muted">Memanfaatkan platform teknologi modern berbasis web demi menjangkau alumni dan pendengar umum di luar lingkungan kampus secara tak terbatas.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section (Titik FT UNP Padang) -->
+<div class="map-container">
+    <iframe src="https://maps.google.com/maps?q=-0.8984231,100.3499814&z=17&output=embed&iwloc=near" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<!-- Footer -->
+<footer id="kontak" class="py-5 text-white" style="background: #051b3b;">
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h6 class="fw-bold text-warning mb-3">ALAMAT KAMPUS</h6>
+                <p class="small px-md-5">Kampus Pusat UNP, Jalan Prof. Dr. Hamka, Air Tawar, Kota Padang, Sumatera Barat (Kode Pos: 25131)</p>
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold text-warning mb-3">MEDIA SOSIAL</h6>
+                <div class="fs-4">
+                    <!-- LINK FACEBOOK AKTIF -->
+                    <a href="https://www.facebook.com/share/1BPeAtNMeu/" target="_blank" class="text-white me-3 text-decoration-none"><i class="fab fa-facebook mb-2"></i></a>
+                    <a href="#" class="text-white me-3 text-decoration-none"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white text-decoration-none"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="small mt-2 mb-0 opacity-50">Email: info@kiaraikippadang.ac.id</p>
+            </div>
+        </div>
+        <hr class="opacity-25 my-4">
+        <p class="small mb-0 opacity-50">© 2024 KIARA IKIP PADANG. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Back to top button -->
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    window.onscroll = function() {
+        let btn = document.getElementById("backToTop");
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) btn.style.display = "block";
+        else btn.style.display = "none";
+    };
+</script>
+</body>
+</html>
